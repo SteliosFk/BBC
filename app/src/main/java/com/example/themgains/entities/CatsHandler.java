@@ -55,7 +55,7 @@ public class CatsHandler {
                 if (c2.def > 0) c1.def -= c2.str;
             }else if (c2.speed > c1.speed) {
                 c1.def -= c2.str;
-                if (c1.def > 0) c1.def -= c2.str;
+                if (c1.def > 0) c2.def -= c1.str;
             } else {
                 c2.def -= c1.str;
                 c1.def -= c2.str;
