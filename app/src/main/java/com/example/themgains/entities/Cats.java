@@ -1,49 +1,22 @@
 package com.example.themgains.entities;
 
-import android.media.Image;
+public abstract class Cats {
 
-public class Cats {
+    public int str;
+    public int def;
+    public int speed;
 
-    private String name;
-    private Rarities rarity;
+    public Rarities rarity;
+    public Element element;
 
-    private int str;
-    private int def;
+    public String name;
 
-    private Image image;
-    public String imagePath;
-
-    public Cats(String name, Rarities rarity) {
+    public Cats(String name, Rarities rarity,Element element) {
         this.name = name;
         this.rarity = rarity;
-        this.str = 0;
-        this.def = 0;
+        this.element = element;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
-    }
-
-    public void changeStats(int str, int def) {
-        this.str = str;
-        this.def = def;
-    }
-
-    public int getStr() {
-        return str;
-    }
-
-    public int getDef() {
-        return def;
-    }
-    public void setDef(int def) { this.def = def; }
-
-    public String getName() {
-        return name;
-    }
-
-    public Rarities getRarity() {
-        return rarity;
-    }
+    public abstract void passives(Cats enemy);
 
 }
