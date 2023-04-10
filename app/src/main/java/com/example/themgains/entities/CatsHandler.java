@@ -1,6 +1,7 @@
 package com.example.themgains.entities;
 
 import com.example.themgains.entities.cats.CosmicCat;
+import com.example.themgains.entities.cats.NoneCat;
 import com.example.themgains.entities.cats.Pedro;
 import com.example.themgains.entities.player.Player;
 
@@ -81,8 +82,11 @@ public class CatsHandler {
 
             System.out.println(plr.currentCard.name + "\nHp:" + plr.currentCard.def + "\n\n\n");
             System.out.println(plrE.currentCard.name + "\nHp:" + plrE.currentCard.def + "\n");
+            if (plr.currentCard.def <= 0) plr.currentCard = new NoneCat();
+            if (plrE.currentCard.def <= 0) plrE.currentCard = new NoneCat();
             System.out.println("==============================================");
             if (plr.currentCard.def <= 0 || plrE.currentCard.def <= 0) finished = true;
+            finished = true;
         }
     }
 

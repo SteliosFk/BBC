@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.themgains.entities.Cats;
 import com.example.themgains.entities.CatsHandler;
+import com.example.themgains.entities.cats.NoneCat;
 import com.example.themgains.entities.player.Player;
 
 public class PlayActivity extends AppCompatActivity {
@@ -26,6 +27,25 @@ public class PlayActivity extends AppCompatActivity {
 
         plr = new Player();
         plrE = new Player();
+
+        plrE.currentCard = plrE.cardsInDeck.get(0);
+        plrE.cardsInDeck.remove(0);
+    }
+
+    public void FIGHT(View view) {
+        if (plr.currentCard.name == new NoneCat().name) {
+            System.out.println("You aint got a card you monkey!");
+        } else if (plrE.currentCard.name == new NoneCat().name) {
+            if (plrE.cardsInDeck.size() > 0) {
+                plrE.currentCard = plrE.cardsInDeck.get(0);
+                plrE.cardsInDeck.remove(0);
+                catsHandler.battleLoop(plr, plrE);
+            } else {
+                System.out.println("You won nice, idc though");
+            }
+        } else {
+            catsHandler.battleLoop(plr, plrE);
+        }
     }
 
     public void drawCard(View view) {
