@@ -35,8 +35,13 @@ public class CatsHandler {
     public void battleLoop(Cats c1, Cats c2) {
         boolean finished = false;
         while (!finished) {
-            c1.passives(c2);
-            c2.passives(c1);
+            if (c1.speed > c2.speed) {
+                c1.passives(c2);
+                c2.passives(c1);
+            } else {
+                c2.passives(c1);
+                c1.passives(c2);
+            }
 
             switch (elementCase(c1, c2)) {
                 case 1:
