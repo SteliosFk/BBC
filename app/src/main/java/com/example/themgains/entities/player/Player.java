@@ -2,6 +2,7 @@ package com.example.themgains.entities.player;
 
 import com.example.themgains.entities.Cats;
 import com.example.themgains.entities.cats.CosmicCat;
+import com.example.themgains.entities.cats.NoneCat;
 import com.example.themgains.entities.cats.Pedro;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class Player {
 
     public Player() {
         fillDeck();
+        currentCard = new NoneCat();
     }
 
     public void fillDeck() {
@@ -24,7 +26,7 @@ public class Player {
     }
 
     public boolean canDraw() {
-        if (cardsInDeck.size() > 0 && currentCard == None) {
+        if (cardsInDeck.size() > 0 && currentCard.name == "None") {
             return true;
         }
         return false;

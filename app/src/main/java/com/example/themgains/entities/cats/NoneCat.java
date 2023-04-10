@@ -4,8 +4,9 @@ import com.example.themgains.entities.Cats;
 import com.example.themgains.entities.Element;
 import com.example.themgains.entities.Rarities;
 
-public class None extends Cats {
-    public None() {
+public class NoneCat extends Cats {
+
+    public NoneCat() {
         super("None", Rarities.Common, Element.Black);
     }
 

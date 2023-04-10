@@ -2,6 +2,7 @@ package com.example.themgains.entities;
 
 import com.example.themgains.entities.cats.CosmicCat;
 import com.example.themgains.entities.cats.Pedro;
+import com.example.themgains.entities.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,56 +33,56 @@ public class CatsHandler {
         return 0;
     }
 
-    public void battleLoop(Cats c1, Cats c2) {
+    public void battleLoop(Player plr, Player plrE) {
         boolean finished = false;
         while (!finished) {
-            if (c1.speed > c2.speed) {
-                c1.passives(c2);
-                c2.passives(c1);
+            if (plr.currentCard.speed > plrE.currentCard.speed) {
+                plr.currentCard.passives(plrE.currentCard);
+                plrE.currentCard.passives(plr.currentCard);
             } else {
-                c2.passives(c1);
-                c1.passives(c2);
+                plrE.currentCard.passives(plr.currentCard);
+                plr.currentCard.passives(plrE.currentCard);
             }
 
-            switch (elementCase(c1, c2)) {
+            switch (elementCase(plr.currentCard, plrE.currentCard)) {
                 case 1:
-                    c1.str++;
-                    c2.str--;
+                    plr.currentCard.str++;
+                    plrE.currentCard.str--;
                     break;
                 case 2:
-                    c2.str++;
-                    c1.str--;
+                    plrE.currentCard.str++;
+                    plr.currentCard.str--;
                     break;
             }
             //=======================================================================
 
-            if (c1.speed > c2.speed) {
-                c2.def -= c1.str;
-                if (c2.def > 0) c1.def -= c2.str;
-            }else if (c2.speed > c1.speed) {
-                c1.def -= c2.str;
-                if (c1.def > 0) c2.def -= c1.str;
+            if (plr.currentCard.speed > plrE.currentCard.speed) {
+                plrE.currentCard.def -= plr.currentCard.str;
+                if (plrE.currentCard.def > 0) plr.currentCard.def -= plrE.currentCard.str;
+            }else if (plrE.currentCard.speed > plr.currentCard.speed) {
+                plr.currentCard.def -= plrE.currentCard.str;
+                if (plr.currentCard.def > 0) plrE.currentCard.def -= plr.currentCard.str;
             } else {
-                c2.def -= c1.str;
-                c1.def -= c2.str;
+                plrE.currentCard.def -= plr.currentCard.str;
+                plr.currentCard.def -= plrE.currentCard.str;
             }
 
             //=======================================================================
-            switch (elementCase(c1, c2)) {
+            switch (elementCase(plr.currentCard, plrE.currentCard)) {
                 case 1:
-                    c1.str--;
-                    c2.str++;
+                    plrE.currentCard.str++;
+                    plr.currentCard.str--;
                     break;
                 case 2:
-                    c2.str--;
-                    c1.str++;
+                    plr.currentCard.str++;
+                    plrE.currentCard.str--;
                     break;
             }
 
-            System.out.println(c1.name + "\nHp:" + c1.def + "\n\n\n");
-            System.out.println(c2.name + "\nHp:" + c2.def + "\n");
+            System.out.println(plr.currentCard.name + "\nHp:" + plr.currentCard.def + "\n\n\n");
+            System.out.println(plrE.currentCard.name + "\nHp:" + plrE.currentCard.def + "\n");
             System.out.println("==============================================");
-            if (c1.def <= 0 || c2.def <= 0) finished = true;
+            if (plr.currentCard.def <= 0 || plrE.currentCard.def <= 0) finished = true;
         }
     }
 
