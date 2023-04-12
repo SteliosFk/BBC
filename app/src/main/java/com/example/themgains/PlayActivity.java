@@ -2,6 +2,7 @@ package com.example.themgains;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +13,8 @@ import com.example.themgains.entities.player.Player;
 
 public class PlayActivity extends AppCompatActivity {
     public CatsHandler catsHandler = new CatsHandler();
+
+    TextView textView;
 
     public Player plr;
     public Player plrE;
@@ -46,6 +49,9 @@ public class PlayActivity extends AppCompatActivity {
         } else {
             catsHandler.battleLoop(plr, plrE);
         }
+        textView = (TextView)findViewById(R.id.TextViewHp);
+        textView.setText("Stelios" + plr.currentCard.name);
+        setContentView(R.layout.activity_play);
     }
 
     public void drawCard(View view) {
