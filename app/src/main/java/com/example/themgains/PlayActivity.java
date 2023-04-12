@@ -15,7 +15,7 @@ import com.example.themgains.entities.player.Player;
 public class PlayActivity extends AppCompatActivity {
     public CatsHandler catsHandler = new CatsHandler();
 
-    TextView textView;
+    TextView hpText;
 
     public Player plr;
     public Player plrE;
@@ -59,8 +59,8 @@ public class PlayActivity extends AppCompatActivity {
         } else {
             catsHandler.battleLoop(plr, plrE);
         }
-        textView = findViewById(R.id.TextViewHp);
-        textView.setText("Stelios" + plr.currentCard.name);
+        hpText = findViewById(R.id.TextViewHp);
+        hpText.setText("Stelios" + plr.currentCard.name);
         setContentView(R.layout.activity_play);
     }
 
