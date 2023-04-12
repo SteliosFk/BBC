@@ -2,6 +2,7 @@ package com.example.themgains;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +34,15 @@ public class PlayActivity extends AppCompatActivity {
 
         plrE.currentCard = plrE.cardsInDeck.get(0);
         plrE.cardsInDeck.remove(0);
+
+        Button btnFight = findViewById(R.id.fightButton);
+        btnFight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FIGHT(view);
+            }
+        });
+
     }
 
     public void FIGHT(View view) {
@@ -49,7 +59,7 @@ public class PlayActivity extends AppCompatActivity {
         } else {
             catsHandler.battleLoop(plr, plrE);
         }
-        textView = (TextView)findViewById(R.id.TextViewHp);
+        textView = findViewById(R.id.TextViewHp);
         textView.setText("Stelios" + plr.currentCard.name);
         setContentView(R.layout.activity_play);
     }
