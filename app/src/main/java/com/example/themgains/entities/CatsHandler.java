@@ -86,7 +86,7 @@ public class CatsHandler {
             if (plrE.currentCard.def <= 0) plrE.currentCard = new NoneCat();
             System.out.println("==============================================");
             if (plr.currentCard.def <= 0 || plrE.currentCard.def <= 0) finished = true;
-            finished = true;
+            finished = true; //remove this to finish the battle in one go
         }
     }
 
