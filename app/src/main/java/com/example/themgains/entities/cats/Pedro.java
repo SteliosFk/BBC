@@ -1,5 +1,6 @@
 package com.example.themgains.entities.cats;
 
+import com.example.themgains.R;
 import com.example.themgains.entities.Cats;
 import com.example.themgains.entities.Element;
 import com.example.themgains.entities.Rarities;
@@ -10,6 +11,8 @@ public class Pedro extends Cats {
         str = 5;
         def = 20;
         speed = 9999;
+
+        img = R.drawable.pedro;
     }
 
     @Override

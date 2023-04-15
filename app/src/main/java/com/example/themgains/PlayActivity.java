@@ -3,6 +3,7 @@ package com.example.themgains;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +16,10 @@ import com.example.themgains.entities.player.Player;
 public class PlayActivity extends AppCompatActivity {
     public CatsHandler catsHandler = new CatsHandler();
 
+    ImageView plrImg;
+
     TextView hpText;
+    TextView atkText;
 
     public Player plr;
     public Player plrE;
@@ -28,6 +32,11 @@ public class PlayActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
+
+        hpText = findViewById(R.id.TextViewHp);
+        atkText = findViewById(R.id.TextViewAtk);
+
+        plrImg = findViewById(R.id.currentCard);
 
         plr = new Player();
         plrE = new Player();
@@ -59,9 +68,9 @@ public class PlayActivity extends AppCompatActivity {
         } else {
             catsHandler.battleLoop(plr, plrE);
         }
-        hpText = findViewById(R.id.TextViewHp);
-        hpText.setText("Stelios" + plr.currentCard.name);
-        setContentView(R.layout.activity_play);
+        plrImg.setImageResource(plr.currentCard == new NoneCat() ? null : plr.currentCard.img);
+        hpText.setText("Hp: " + plr.currentCard.def);
+        atkText.setText("Str: " + plr.currentCard.str);
     }
 
     public void drawCard(View view) {
@@ -82,5 +91,8 @@ public class PlayActivity extends AppCompatActivity {
             System.out.println("> Can't draw card...");
         }
         System.out.println("======================================");
+        plrImg.setImageResource(plr.currentCard == new NoneCat() ? null : plr.currentCard.img);
+        hpText.setText("Hp: " + plr.currentCard.def);
+        atkText.setText("Str: " + plr.currentCard.str);
     }
 }

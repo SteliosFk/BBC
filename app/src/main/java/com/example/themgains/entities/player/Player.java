@@ -2,6 +2,8 @@ package com.example.themgains.entities.player;
 
 import com.example.themgains.entities.Cats;
 import com.example.themgains.entities.cats.CosmicCat;
+import com.example.themgains.entities.cats.DimensionalCat;
+import com.example.themgains.entities.cats.Gony;
 import com.example.themgains.entities.cats.NoneCat;
 import com.example.themgains.entities.cats.Pedro;
 
@@ -21,6 +23,8 @@ public class Player {
     public void fillDeck() {
         cardsInDeck.add(new Pedro());
         cardsInDeck.add(new CosmicCat());
+        cardsInDeck.add(new DimensionalCat());
+        cardsInDeck.add(new Gony());
 
         Collections.shuffle(cardsInDeck);
     }

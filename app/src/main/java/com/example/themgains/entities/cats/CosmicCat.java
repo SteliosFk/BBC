@@ -1,5 +1,6 @@
 package com.example.themgains.entities.cats;
 
+import com.example.themgains.R;
 import com.example.themgains.entities.Cats;
 import com.example.themgains.entities.Element;
 import com.example.themgains.entities.Rarities;
@@ -10,6 +11,8 @@ public class CosmicCat extends Cats {
         str = 1;
         def = 40;
         speed = 25;
+
+        img = R.drawable.cosmic_cat;
     }
 
     @Override
