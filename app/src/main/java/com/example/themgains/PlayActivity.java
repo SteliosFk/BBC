@@ -1,5 +1,6 @@
 package com.example.themgains;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,8 +16,11 @@ import com.example.themgains.entities.player.Player;
 
 public class PlayActivity extends AppCompatActivity {
     public CatsHandler catsHandler = new CatsHandler();
+    protected boolean viewsPlayer = true;
 
     ImageView plrImg;
+
+    Intent intent;
 
     TextView hpText;
     TextView atkText;
@@ -52,6 +56,28 @@ public class PlayActivity extends AppCompatActivity {
             }
         });
 
+        Button btnSwitchView = findViewById(R.id.toggleBetweenViewButton);
+        btnSwitchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (viewsPlayer) {
+                    plrImg.setImageResource(plrE.currentCard == new NoneCat() ? null : plrE.currentCard.img);
+                    hpText.setText("Hp: " + plrE.currentCard.def);
+                    atkText.setText("Str: " + plrE.currentCard.str);
+
+                    btnSwitchView.setText("PLAYER");
+                    viewsPlayer = false;
+                } else {
+                    plrImg.setImageResource(plr.currentCard == new NoneCat() ? null : plr.currentCard.img);
+                    hpText.setText("Hp: " + plr.currentCard.def);
+                    atkText.setText("Str: " + plr.currentCard.str);
+
+                    btnSwitchView.setText("ENEMY");
+                    viewsPlayer = true;
+                }
+            }
+        });
+
     }
 
     public void FIGHT(View view) {
@@ -68,9 +94,20 @@ public class PlayActivity extends AppCompatActivity {
         } else {
             catsHandler.battleLoop(plr, plrE);
         }
-        plrImg.setImageResource(plr.currentCard == new NoneCat() ? null : plr.currentCard.img);
-        hpText.setText("Hp: " + plr.currentCard.def);
-        atkText.setText("Str: " + plr.currentCard.str);
+        if (viewsPlayer) {
+            plrImg.setImageResource(plr.currentCard == new NoneCat() ? null : plr.currentCard.img);
+            hpText.setText("Hp: " + plr.currentCard.def);
+            atkText.setText("Str: " + plr.currentCard.str);
+        } else {
+            plrImg.setImageResource(plrE.currentCard == new NoneCat() ? null : plrE.currentCard.img);
+            hpText.setText("Hp: " + plrE.currentCard.def);
+            atkText.setText("Str: " + plrE.currentCard.str);
+        }
+        if (plrE.currentCard == new NoneCat() && plrE.cardsInDeck.size() <= 0) {
+            setContentView(R.layout.activity_win);
+        }
+        intent = new Intent(getApplicationContext(), WinActivity.class);
+        startActivity(intent);
     }
 
     public void drawCard(View view) {
@@ -91,8 +128,14 @@ public class PlayActivity extends AppCompatActivity {
             System.out.println("> Can't draw card...");
         }
         System.out.println("======================================");
-        plrImg.setImageResource(plr.currentCard == new NoneCat() ? null : plr.currentCard.img);
-        hpText.setText("Hp: " + plr.currentCard.def);
-        atkText.setText("Str: " + plr.currentCard.str);
+        if (viewsPlayer) {
+            plrImg.setImageResource(plr.currentCard == new NoneCat() ? null : plr.currentCard.img);
+            hpText.setText("Hp: " + plr.currentCard.def);
+            atkText.setText("Str: " + plr.currentCard.str);
+        } else {
+            plrImg.setImageResource(plrE.currentCard == new NoneCat() ? null : plrE.currentCard.img);
+            hpText.setText("Hp: " + plrE.currentCard.def);
+            atkText.setText("Str: " + plrE.currentCard.str);
+        }
     }
 }
