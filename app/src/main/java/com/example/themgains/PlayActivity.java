@@ -28,6 +28,9 @@ public class PlayActivity extends AppCompatActivity {
     public Player plr;
     public Player plrE;
 
+    protected boolean won = false;
+    protected boolean lost = false;
+
     int i;
 
     @Override
@@ -82,13 +85,18 @@ public class PlayActivity extends AppCompatActivity {
 
     public void FIGHT(View view) {
         if (plr.currentCard.name == new NoneCat().name) {
-            System.out.println("You aint got a card you monkey!");
+            if (plr.cardsInDeck.size() <= 0) {
+                lost = true;
+            } else {
+                System.out.println("You aint got a card you monkey!");
+            }
         } else if (plrE.currentCard.name == new NoneCat().name) {
             if (plrE.cardsInDeck.size() > 0) {
                 plrE.currentCard = plrE.cardsInDeck.get(0);
                 plrE.cardsInDeck.remove(0);
                 catsHandler.battleLoop(plr, plrE);
             } else {
+                won = true;
                 System.out.println("You won nice, idc though");
             }
         } else {
@@ -103,11 +111,17 @@ public class PlayActivity extends AppCompatActivity {
             hpText.setText("Hp: " + plrE.currentCard.def);
             atkText.setText("Str: " + plrE.currentCard.str);
         }
-        if (plrE.currentCard == new NoneCat() && plrE.cardsInDeck.size() <= 0) {
-            setContentView(R.layout.activity_win);
+
+        if (plr.currentCard == new NoneCat() && plr.cardsInDeck.size() <= 0) lost = true;
+        if (plrE.currentCard == new NoneCat() && plrE.cardsInDeck.size() <= 0) won = true;
+
+        if (won) {
+            intent = new Intent(getApplicationContext(), WinActivity.class);
+            startActivity(intent);
+        } else if (lost) {
+            intent = new Intent(getApplicationContext(), LostActivity.class);
+            startActivity(intent);
         }
-        intent = new Intent(getApplicationContext(), WinActivity.class);
-        startActivity(intent);
     }
 
     public void drawCard(View view) {

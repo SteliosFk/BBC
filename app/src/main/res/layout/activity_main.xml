@@ -40,4 +40,15 @@
         app:layout_constraintTop_toBottomOf="@+id/cardsButton"
         app:layout_constraintVertical_bias="0" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="161dp"
+        android:layout_height="280dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardsButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/kblogo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
