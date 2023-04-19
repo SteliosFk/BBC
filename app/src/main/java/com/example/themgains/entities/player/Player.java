@@ -6,6 +6,7 @@ import com.example.themgains.entities.cats.DimensionalCat;
 import com.example.themgains.entities.cats.Gony;
 import com.example.themgains.entities.cats.NoneCat;
 import com.example.themgains.entities.cats.Pedro;
+import com.example.themgains.entities.cats.TitanCat;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,6 +28,7 @@ public class Player {
         cardsInDeck.add(new CosmicCat());
         cardsInDeck.add(new DimensionalCat());
         cardsInDeck.add(new Gony());
+        cardsInDeck.add(new TitanCat());
 
         Collections.shuffle(cardsInDeck);
     }

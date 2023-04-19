@@ -13,7 +13,8 @@ public class CosmicActivity extends AppCompatActivity {
             R.drawable.cosmiccatdisplay,
             R.drawable.dimensionaldisplay,
             R.drawable.pedrodisplay,
-            R.drawable.gonydisplay
+            R.drawable.gonydisplay,
+            R.drawable.titancatdisplay
     };
     protected int currentlyDisplaying = 0;
 
