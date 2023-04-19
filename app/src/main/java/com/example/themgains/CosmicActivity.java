@@ -7,17 +7,27 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.themgains.entities.Cats;
+import com.example.themgains.entities.player.Player;
+
 public class CosmicActivity extends AppCompatActivity {
 
-    protected int[] cats = {R.drawable.cosmiccatdisplay, R.drawable.nullcheck};
+    protected int[] cats;
     protected int currentlyDisplaying = 0;
 
     ImageView displayImg;
+
+    Player plr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cosmic);
+
+        plr = new Player();
+        for (Cats cat : plr.notSuffledDeck) {
+            cats[cats.length - 1] = cat.displayImg;
+        }
 
         displayImg = findViewById(R.id.displayedImage);
 
@@ -25,12 +35,12 @@ public class CosmicActivity extends AppCompatActivity {
         findViewById(R.id.nextCard).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (currentlyDisplaying < cats.length) {
+                if (currentlyDisplaying + 1 <= cats.length - 1) {
                     currentlyDisplaying++;
                 } else {
                     currentlyDisplaying = 0;
                 }
-                displayImg.setImageResource(cats[currentlyDisplaying] == R.drawable.nullcheck ? null : cats[currentlyDisplaying]);
+                displayImg.setImageResource(cats[currentlyDisplaying]);
             }
         });
 

@@ -20,6 +20,7 @@ public class DimensionalCat extends Cats {
         speed = 30;
 
         img = R.drawable.dimensional_cat;
+        displayImg = R.drawable.dimensionaldisplay;
     }
 
     @Override

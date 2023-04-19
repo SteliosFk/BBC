@@ -13,6 +13,7 @@ public class CosmicCat extends Cats {
         speed = 25;
 
         img = R.drawable.cosmic_cat;
+        displayImg = R.drawable.cosmiccatdisplay;
     }
 
     @Override

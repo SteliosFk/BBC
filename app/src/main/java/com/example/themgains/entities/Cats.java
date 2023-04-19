@@ -3,10 +3,11 @@ package com.example.themgains.entities;
 public abstract class Cats {
 
     public int img;
+    public int displayImg;
+
     public int str;
     public int def;
     public int speed;
-
 
     public Rarities rarity;
     public Element element;

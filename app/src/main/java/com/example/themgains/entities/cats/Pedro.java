@@ -13,6 +13,7 @@ public class Pedro extends Cats {
         speed = 9999;
 
         img = R.drawable.pedro;
+        displayImg = R.drawable.pedrodisplay;
     }
 
     @Override

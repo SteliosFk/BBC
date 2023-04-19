@@ -20,6 +20,7 @@ public class Gony extends Cats {
         speed = 15;
 
         img = R.drawable.gony;
+        displayImg = R.drawable.gonydisplay;
     }
 
     @Override
