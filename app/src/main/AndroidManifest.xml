@@ -12,6 +12,15 @@
         android:theme="@style/Theme.ThemGains"
         tools:targetApi="31">
         <activity
+            android:name=".CosmicActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CardsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NotesActivity"
+            android:exported="false" />
+        <activity
             android:name=".LostActivity"
             android:exported="false" />
         <activity

@@ -19,14 +19,17 @@ public class MainActivity extends AppCompatActivity {
         notes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //notes intent
+                Intent notesIntent = new Intent(getApplicationContext(), NotesActivity.class);
+                startActivity(notesIntent);
             }
         });
 
         cards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //cards intent
+                //Intent intent = new Intent(getApplicationContext(), CardsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CosmicActivity.class);
+                startActivity(intent);
             }
         });
     }
