@@ -7,27 +7,22 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.themgains.entities.Cats;
-import com.example.themgains.entities.player.Player;
-
 public class CosmicActivity extends AppCompatActivity {
 
-    protected int[] cats;
+    protected int[] cats = {
+            R.drawable.cosmiccatdisplay,
+            R.drawable.dimensionaldisplay,
+            R.drawable.pedrodisplay,
+            R.drawable.gonydisplay
+    };
     protected int currentlyDisplaying = 0;
 
     ImageView displayImg;
-
-    Player plr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cosmic);
-
-        plr = new Player();
-        for (Cats cat : plr.notSuffledDeck) {
-            cats[cats.length - 1] = cat.displayImg;
-        }
 
         displayImg = findViewById(R.id.displayedImage);
 
@@ -44,10 +39,22 @@ public class CosmicActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.prevCard).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (currentlyDisplaying - 1 >= 0) {
+                    currentlyDisplaying--;
+                } else {
+                    currentlyDisplaying = cats.length - 1;
+                }
+                displayImg.setImageResource(cats[currentlyDisplaying]);
+            }
+        });
+
         findViewById(R.id.cosmicGoBack).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CardsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
