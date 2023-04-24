@@ -1,6 +1,8 @@
 package com.example.themgains;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +17,14 @@ import com.example.themgains.entities.cats.NoneCat;
 import com.example.themgains.entities.player.Player;
 
 public class PlayActivity extends AppCompatActivity {
+    MediaPlayer mediaPlayer;
+    MediaPlayer hitSound1;
+    MediaPlayer hitSound2;
+
+    private SoundPool soundPool;
+    private int win;
+    private int lose;
+
     public CatsHandler catsHandler = new CatsHandler();
     protected boolean viewsPlayer = true;
 
@@ -39,6 +49,15 @@ public class PlayActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
+
+        hitSound1 = MediaPlayer.create(getApplicationContext(), R.raw.hit);
+        hitSound2 = MediaPlayer.create(getApplicationContext(), R.raw.hit1);
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.battlemusic);
+
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
+
+
 
         hpText = findViewById(R.id.TextViewHp);
         atkText = findViewById(R.id.TextViewAtk);
@@ -83,6 +102,10 @@ public class PlayActivity extends AppCompatActivity {
 
     }
 
+    protected int rng(int max, int min) {
+        return (int)Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
     public void FIGHT(View view) {
         if (plr.currentCard.name == new NoneCat().name) {
             if (plr.cardsInDeck.size() <= 0) {
@@ -94,12 +117,16 @@ public class PlayActivity extends AppCompatActivity {
             if (plrE.cardsInDeck.size() > 0) {
                 plrE.currentCard = plrE.cardsInDeck.get(0);
                 plrE.cardsInDeck.remove(0);
+                /*if (rng(100, 0) > 50) hitSound1.start();
+                else hitSound2.start();*/
                 catsHandler.battleLoop(plr, plrE);
             } else {
                 won = true;
                 System.out.println("You won nice, idc though");
             }
         } else {
+            /*if (rng(100, 0) > 50) hitSound1.start();
+            else hitSound2.start();*/
             catsHandler.battleLoop(plr, plrE);
         }
         if (viewsPlayer) {
@@ -116,9 +143,13 @@ public class PlayActivity extends AppCompatActivity {
         if (plrE.currentCard == new NoneCat() && plrE.cardsInDeck.size() <= 0) won = true;
 
         if (won) {
+            soundPool.play(win, 1, 1, 0, 0, 1);
+            mediaPlayer.stop();
             intent = new Intent(getApplicationContext(), WinActivity.class);
             startActivity(intent);
         } else if (lost) {
+            soundPool.play(lose, 1, 1, 0, 0, 1);
+            mediaPlayer.stop();
             intent = new Intent(getApplicationContext(), LostActivity.class);
             startActivity(intent);
         }

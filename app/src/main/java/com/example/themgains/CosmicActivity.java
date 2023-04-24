@@ -1,6 +1,7 @@
 package com.example.themgains;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class CosmicActivity extends AppCompatActivity {
+    MediaPlayer mediaPlayer;
 
     protected int[] cats = {
             R.drawable.cosmiccatdisplay,
@@ -24,6 +26,10 @@ public class CosmicActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cosmic);
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.win);
+
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
 
         displayImg = findViewById(R.id.displayedImage);
 

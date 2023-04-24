@@ -23,7 +23,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stylianos Fakinos|Vitoroi Florin"
+        android:text="Stylianos Fakinos|Vitoroi Florin|Foivos kontogiannhs"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
