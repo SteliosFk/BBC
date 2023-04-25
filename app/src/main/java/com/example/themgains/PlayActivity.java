@@ -143,12 +143,10 @@ public class PlayActivity extends AppCompatActivity {
         if (plrE.currentCard == new NoneCat() && plrE.cardsInDeck.size() <= 0) won = true;
 
         if (won) {
-            soundPool.play(win, 1, 1, 0, 0, 1);
             mediaPlayer.stop();
             intent = new Intent(getApplicationContext(), WinActivity.class);
             startActivity(intent);
         } else if (lost) {
-            soundPool.play(lose, 1, 1, 0, 0, 1);
             mediaPlayer.stop();
             intent = new Intent(getApplicationContext(), LostActivity.class);
             startActivity(intent);

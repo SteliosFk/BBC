@@ -19,7 +19,6 @@ public class Player {
 
     public Player() {
         fillDeck();
-        notSuffledDeck();
         currentCard = new NoneCat();
     }
 
@@ -31,12 +30,6 @@ public class Player {
         cardsInDeck.add(new TitanCat());
 
         Collections.shuffle(cardsInDeck);
-    }
-    public void notSuffledDeck() {
-        notSuffledDeck.add(new Pedro());
-        notSuffledDeck.add(new CosmicCat());
-        notSuffledDeck.add(new DimensionalCat());
-        notSuffledDeck.add(new Gony());
     }
 
     public boolean canDraw() {
